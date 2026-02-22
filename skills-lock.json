@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "skills": {
+    "beautifulsoup-parsing": {
+      "source": "mindrally/skills",
+      "sourceType": "github",
+      "computedHash": "cde69d24f1b3123b4f629292611fc462baba06f229f2ab996a04c5cb3ca08c79"
+    },
+    "find-skills": {
+      "source": "vercel-labs/skills",
+      "sourceType": "github",
+      "computedHash": "25872a21881a950edc3db1f3329664d60405d539660ce05b3265db2de06a7dfd"
+    },
+    "python-performance-optimization": {
+      "source": "wshobson/agents",
+      "sourceType": "github",
+      "computedHash": "05c283d97b1bc4fb033593af9d22095c716312fcc55840f2ef438a015e112865"
+    },
+    "scrapy-web-scraping": {
+      "source": "mindrally/skills",
+      "sourceType": "github",
+      "computedHash": "f295a7b58c71387e9824161b6a4206d6cbca3fc93805fb51389af6ef04b03d9c"
+    }
+  }
+}

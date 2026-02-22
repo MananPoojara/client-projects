@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  scraper:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: job-scraper
+    volumes:
+      - ./config:/app/config
+      - ./output:/app/output
+    environment:
+      - DATABASE_URL=${DATABASE_URL:-postgresql://user:pass@postgres:5432/jobs}
+      - REDIS_URL=${REDIS_URL:-redis://redis:6379}
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+    depends_on:
+      - postgres
+      - redis
+    restart: unless-stopped
+
+  scraper-worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: job-scraper-worker
+    command: python -m scraper.worker
+    volumes:
+      - ./config:/app/config
+      - ./output:/app/output
+    environment:
+      - DATABASE_URL=${DATABASE_URL:-postgresql://user:pass@postgres:5432/jobs}
+      - REDIS_URL=${REDIS_URL:-redis://redis:6379}
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+    depends_on:
+      - postgres
+      - redis
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: scraper-db
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_DB=jobs
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    container_name: scraper-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  redis_data:

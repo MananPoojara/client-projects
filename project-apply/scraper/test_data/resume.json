@@ -1,0 +1,45 @@
+{
+  "candidate": {
+    "id": "candidate-001",
+    "name": "John Doe",
+    "email": "john.doe@email.com",
+    "phone": "+1-555-0123",
+    "location": "San Francisco, CA",
+    "title": "Full Stack Developer",
+    "summary": "Experienced Full Stack Developer with 5 years of experience in Python, JavaScript, React, Node.js, and cloud technologies. Passionate about building scalable applications.",
+    "experience_years": 5,
+    "skills": [
+      "python",
+      "javascript",
+      "react",
+      "node.js",
+      "postgresql",
+      "docker",
+      "aws",
+      "git",
+      "rest api",
+      "agile"
+    ],
+    "education": [
+      {
+        "degree": "BS Computer Science",
+        "university": "Stanford University",
+        "year": 2019
+      }
+    ],
+    "work_history": [
+      {
+        "title": "Software Engineer",
+        "company": "Tech Corp",
+        "duration": "2020 - Present",
+        "description": "Full stack development with Python, React, and AWS"
+      },
+      {
+        "title": "Junior Developer",
+        "company": "Startup Inc",
+        "duration": "2019 - 2020",
+        "description": "Backend development with Node.js and PostgreSQL"
+      }
+    ]
+  }
+}

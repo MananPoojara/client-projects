@@ -1,0 +1,236 @@
+{
+  "candidate": {
+    "name": "John Doe",
+    "title": "Full Stack Developer",
+    "skills": [
+      "python",
+      "javascript",
+      "react",
+      "node.js",
+      "postgresql",
+      "docker",
+      "aws",
+      "git",
+      "rest api",
+      "agile"
+    ]
+  },
+  "total_jobs": 12,
+  "qualified_count": 11,
+  "not_qualified_count": 1,
+  "matches": [
+    {
+      "job_title": "Remote Python Developer Jobs",
+      "company": "Multiple Companies",
+      "source": "remotive",
+      "location": "Remote",
+      "work_type": "remote",
+      "salary_min": 80000,
+      "salary_max": 150000,
+      "source_url": "https://remotive.com/remote-jobs/software-dev/python",
+      "application_url": "https://remotive.com/remote-jobs/software-dev/python",
+      "score": 1.0,
+      "matched_skills": [
+        "react",
+        "aws",
+        "docker",
+        "python",
+        "javascript"
+      ],
+      "is_qualified": true
+    },
+    {
+      "job_title": "Fullstack Python Developer - Remote Work",
+      "company": "BairesDev",
+      "source": "linkedin",
+      "location": "Remote",
+      "work_type": "remote",
+      "salary_min": 100000,
+      "salary_max": 150000,
+      "source_url": "https://ro.linkedin.com/jobs/view/fullstack-python-developer-remote-work-at-bairesdev-4365838628",
+      "application_url": "https://ro.linkedin.com/jobs/view/fullstack-python-developer-remote-work-at-bairesdev-4365838628",
+      "score": 0.9,
+      "matched_skills": [
+        "python",
+        "react",
+        "node.js",
+        "aws"
+      ],
+      "is_qualified": true
+    },
+    {
+      "job_title": "Remote Software Developer Jobs",
+      "company": "Multiple Companies",
+      "source": "weworkremotely",
+      "location": "Remote",
+      "work_type": "remote",
+      "salary_min": 90000,
+      "salary_max": 160000,
+      "source_url": "https://weworkremotely.com/remote-jobs/software-development",
+      "application_url": "https://weworkremotely.com/remote-jobs/software-development",
+      "score": 0.9,
+      "matched_skills": [
+        "python",
+        "react",
+        "node.js",
+        "javascript"
+      ],
+      "is_qualified": true
+    },
+    {
+      "job_title": "Senior Python Backend Developer",
+      "company": "The Motley Fool",
+      "source": "indeed",
+      "location": "Remote",
+      "work_type": "remote",
+      "salary_min": 90000,
+      "salary_max": 100000,
+      "source_url": "https://www.indeed.com/jobs?q=python+backend&l=remote",
+      "application_url": "https://www.indeed.com/jobs?q=python+backend&l=remote",
+      "score": 0.8,
+      "matched_skills": [
+        "python",
+        "aws",
+        "docker"
+      ],
+      "is_qualified": true
+    },
+    {
+      "job_title": "Python/TypeScript Developer",
+      "company": "The School Photo Company / AMC Photo Inc.",
+      "source": "indeed",
+      "location": "Rego Park, NY",
+      "work_type": "onsite",
+      "salary_min": 25,
+      "salary_max": 50,
+      "source_url": "https://www.indeed.com/jobs?q=Python+TypeScript&l=Rego+Park+NY",
+      "application_url": "https://www.indeed.com/jobs?q=Python+TypeScript&l=Rego+Park+NY",
+      "score": 0.775,
+      "matched_skills": [
+        "react",
+        "python",
+        "node.js"
+      ],
+      "is_qualified": true
+    },
+    {
+      "job_title": "Python Developer",
+      "company": "Infosys",
+      "source": "linkedin",
+      "location": "Bengaluru, India",
+      "work_type": "onsite",
+      "salary_min": 80000,
+      "salary_max": 120000,
+      "source_url": "https://www.linkedin.com/jobs/python-developer-jobs",
+      "application_url": "https://www.linkedin.com/jobs/python-developer-jobs",
+      "score": 0.7,
+      "matched_skills": [
+        "postgresql",
+        "python",
+        "aws"
+      ],
+      "is_qualified": true
+    },
+    {
+      "job_title": "Software Engineer (Python/JavaScript) - Hybrid",
+      "company": "CBOE",
+      "source": "indeed",
+      "location": "New York, NY",
+      "work_type": "hybrid",
+      "salary_min": 97750,
+      "salary_max": 120750,
+      "source_url": "https://www.indeed.com/jobs?q=Python+JavaScript&l=New+York+NY",
+      "application_url": "https://www.indeed.com/jobs?q=Python+JavaScript&l=New+York+NY",
+      "score": 0.69,
+      "matched_skills": [
+        "python",
+        "javascript"
+      ],
+      "is_qualified": true
+    },
+    {
+      "job_title": "Senior Data Engineer",
+      "company": "Multiple Companies",
+      "source": "linkedin",
+      "location": "Remote",
+      "work_type": "remote",
+      "salary_min": 140000,
+      "salary_max": 200000,
+      "source_url": "https://www.linkedin.com/jobs/senior-data-engineer-jobs",
+      "application_url": "https://www.linkedin.com/jobs/senior-data-engineer-jobs",
+      "score": 0.667,
+      "matched_skills": [
+        "python",
+        "aws"
+      ],
+      "is_qualified": true
+    },
+    {
+      "job_title": "Python Developer",
+      "company": "Hounen Solar America Inc.",
+      "source": "indeed",
+      "location": "Orangeburg, SC",
+      "work_type": "onsite",
+      "salary_min": 50000,
+      "salary_max": 150000,
+      "source_url": "https://www.indeed.com/jobs?q=Python+Developer&l=Orangeburg+SC",
+      "application_url": "https://www.indeed.com/jobs?q=Python+Developer&l=Orangeburg+SC",
+      "score": 0.65,
+      "matched_skills": [
+        "postgresql",
+        "python"
+      ],
+      "is_qualified": true
+    },
+    {
+      "job_title": "Python Engineer with AWS experience",
+      "company": "EPAM Systems, Inc.",
+      "source": "indeed",
+      "location": "San Francisco, CA",
+      "work_type": "onsite",
+      "salary_min": 120000,
+      "salary_max": 180000,
+      "source_url": "https://www.indeed.com/jobs?q=Python+Engineer&l=San+Francisco+CA",
+      "application_url": "https://www.indeed.com/jobs?q=Python+Engineer&l=San+Francisco+CA",
+      "score": 0.6,
+      "matched_skills": [
+        "python",
+        "aws"
+      ],
+      "is_qualified": true
+    },
+    {
+      "job_title": "Senior Backend Developer (AWS/Azure, Python Expert)",
+      "company": "Robotics Technologies",
+      "source": "indeed",
+      "location": "San Diego, CA",
+      "work_type": "onsite",
+      "salary_min": 130000,
+      "salary_max": 170000,
+      "source_url": "https://www.indeed.com/jobs?q=Senior+Backend+Developer+Python&l=San+Diego+CA",
+      "application_url": "https://www.indeed.com/jobs?q=Senior+Backend+Developer+Python&l=San+Diego+CA",
+      "score": 0.6,
+      "matched_skills": [
+        "python",
+        "aws"
+      ],
+      "is_qualified": true
+    },
+    {
+      "job_title": "Junior Software Engineer, Python",
+      "company": "Torch.AI",
+      "source": "linkedin",
+      "location": "Leawood, KS",
+      "work_type": "onsite",
+      "salary_min": 60000,
+      "salary_max": 80000,
+      "source_url": "https://www.linkedin.com/jobs/view/junior-software-engineer-python-at-torch-ai-",
+      "application_url": "https://www.linkedin.com/jobs/view/junior-software-engineer-python-at-torch-ai-",
+      "score": 0.507,
+      "matched_skills": [
+        "python"
+      ],
+      "is_qualified": false
+    }
+  ]
+}
