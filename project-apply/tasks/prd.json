@@ -1,0 +1,177 @@
+{
+  "instructions": "# Long-Short Strategy Backtesting System\n\n## Project Overview\nBuild a backtesting system for Indian market indices (NIFTY 50, NIFTY BANK, NIFTY IT, NIFTY MIDCAP) with long-short strategies targeting:\n- **CAR/MDD > 3** (Calmar Ratio)\n- **CAR > 10%** (Compound Annual Return)\n- **Win Rate > 60%**\n\n## Target Metrics\n\n| Metric | Target | Description |\n|--------|--------|-------------|\n| CAR | >10% | Compound Annual Return |\n| CAR/MDD | >3 | Calmar Ratio (Return / Max Drawdown) |\n| Win Rate | >60% | Percentage of profitable trades |\n\n## Indian Market Indices\n\n| Index | Symbol | Description |\n|-------|--------|-------------|\n| NIFTY 50 | ^NSEI | Top 50 large-cap stocks |\n| NIFTY BANK | ^NSEBANK | Top banking stocks |\n| NIFTY IT | ^NSESOF | Top IT stocks |\n| NIFTY MIDCAP 100 | ^NSEMDCP100 | Mid-cap stocks |\n| NIFTY PHARMA | ^NSEPHARMA | Pharmaceutical stocks |\n\n## Strategy Types\n\n### 1. Momentum-Based Long-Short\n**Logic:** Buy strongest performers, short weakest performers\n- Lookback period: 3-6 months\n- Rebalance: Monthly\n- Expected CAR: 12-18%\n- Risk: High drawdown in market crashes\n\n### 2. Mean Reversion Long-Short\n**Logic:** Price reverts to moving average\n- Entry: Price deviates >2 std from 20-day MA\n- Exit: Price returns to MA\n- Expected CAR: 10-15%\n- Risk: Trending markets\n\n### 3. Volatility Long-Short\n**Logic:** Long low volatility, short high volatility\n- Measure: 20-day rolling volatility\n- Expected CAR: 8-12%\n- Risk: Volatility clustering\n\n### 4. Pairs Trading\n**Logic:** Trade spread between correlated pairs\n- Example: NIFTY vs NIFTY BANK\n- Entry: Spread deviates from historical mean\n- Exit: Spread reverts\n- Expected CAR: 10-14%\n- Risk: Correlation breakdown\n\n### 5. Trend-Following Long-Short\n**Logic:** Long assets above 200-day MA, short below\n- Filter: 200-day moving average\n- Expected CAR: 10-15%\n- Risk: Whipsaw in ranging markets\n",
+  "items": [
+    {
+      "id": "data-feed",
+      "category": "infrastructure",
+      "description": "Set up historical data feed for Indian indices",
+      "file": "backend/src/data/",
+      "steps": [
+        "Integrate data provider (yfinance, Alpha Vantage, or NSEpy)",
+        "Download historical data for NIFTY 50, BANK, IT, MIDCAP",
+        "Handle survivorship bias - include delisted stocks",
+        "Set up data storage (PostgreSQL or CSV)",
+        "Verify data quality and fill gaps",
+        "Test data retrieval for 10+ years"
+      ],
+      "passes": false,
+      "skipped": null
+    },
+    {
+      "id": "backtest-engine",
+      "category": "core",
+      "description": "Build backtesting engine with proper accounting",
+      "file": "backend/src/backtest/",
+      "steps": [
+        "Create backtest engine class",
+        "Implement long-short position handling",
+        "Add transaction costs (0.1% per trade)",
+        "Implement margin/leverage handling",
+        "Add daily P&L calculation",
+        "Handle dividend adjustments",
+        "Verify against known results"
+      ],
+      "passes": false,
+      "skipped": null
+    },
+    {
+      "id": "momentum-strategy",
+      "category": "strategy",
+      "description": "Implement momentum-based long-short strategy",
+      "file": "strategies/momentum.py",
+      "steps": [
+        "Calculate N-month momentum for each index",
+        "Rank indices by momentum",
+        "Long top performer, short bottom performer",
+        "Monthly rebalancing",
+        "Add 200-day MA filter to reduce drawdown",
+        "Backtest 2010-2024",
+        "Calculate CAR, MDD, Win Rate",
+        "Optimize lookback period (3,6,9,12 months)"
+      ],
+      "passes": false,
+      "skipped": null
+    },
+    {
+      "id": "mean-reversion-strategy",
+      "category": "strategy",
+      "description": "Implement mean reversion long-short strategy",
+      "file": "strategies/mean_reversion.py",
+      "steps": [
+        "Calculate 20-day moving average",
+        "Calculate standard deviation bands (2σ)",
+        "Entry: Price crosses bands",
+        "Exit: Price returns to MA",
+        "Add trend filter (only trade in trend direction)",
+        "Backtest 2010-2024",
+        "Calculate CAR, MDD, Win Rate",
+        "Optimize parameters"
+      ],
+      "passes": false,
+      "skipped": null
+    },
+    {
+      "id": "volatility-strategy",
+      "category": "strategy",
+      "description": "Implement volatility-based long-short strategy",
+      "file": "strategies/volatility.py",
+      "steps": [
+        "Calculate 20-day rolling volatility",
+        "Long low volatility, short high volatility",
+        "Monthly rebalance",
+        "Add volatility scaling",
+        "Backtest 2010-2024",
+        "Calculate CAR, MDD, Win Rate",
+        "Optimize volatility lookback"
+      ],
+      "passes": false,
+      "skipped": null
+    },
+    {
+      "id": "pairs-strategy",
+      "category": "strategy",
+      "description": "Implement pairs trading strategy",
+      "file": "strategies/pairs.py",
+      "steps": [
+        "Identify correlated index pairs",
+        "Calculate spread (ratio or difference)",
+        "Calculate historical mean and std of spread",
+        "Entry: Spread > 2 std from mean",
+        "Exit: Spread reverts to mean",
+        "Backtest 2010-2024",
+        "Calculate CAR, MDD, Win Rate",
+        "Test multiple pairs"
+      ],
+      "passes": false,
+      "skipped": null
+    },
+    {
+      "id": "trend-following-strategy",
+      "category": "strategy",
+      "description": "Implement trend-following long-short strategy",
+      "file": "strategies/trend_following.py",
+      "steps": [
+        "Calculate 200-day moving average",
+        "Long indices above 200-day MA",
+        "Short indices below 200-day MA",
+        "Monthly rebalancing",
+        "Add ATR-based position sizing",
+        "Backtest 2010-2024",
+        "Calculate CAR, MDD, Win Rate",
+        "Optimize MA periods"
+      ],
+      "passes": false,
+      "skipped": null
+    },
+    {
+      "id": "metrics-calculation",
+      "category": "analytics",
+      "description": "Implement metrics calculation (CAR, MDD, Win Rate, Calmar)",
+      "file": "backend/src/metrics/",
+      "steps": [
+        "Calculate Compound Annual Return (CAR)",
+        "Calculate Maximum Drawdown (MDD)",
+        "Calculate Calmar Ratio (CAR/MDD)",
+        "Calculate Win Rate",
+        "Calculate Sharpe Ratio",
+        "Calculate Sortino Ratio",
+        "Calculate Profit Factor",
+        "Verify calculations against known values"
+      ],
+      "passes": false,
+      "skipped": null
+    },
+    {
+      "id": "optimization",
+      "category": "analytics",
+      "description": "Optimize strategy parameters to meet targets",
+      "file": "backend/src/optimization/",
+      "steps": [
+        "Grid search for momentum lookback period",
+        "Grid search for rebalancing frequency",
+        "Grid search for MA periods in trend following",
+        "Find parameters that meet CAR>10%, CAR/MDD>3, WinRate>60%",
+        "Walk-forward validation",
+        "Avoid overfitting - use out-of-sample testing"
+      ],
+      "passes": false,
+      "skipped": null
+    },
+    {
+      "id": "reporting",
+      "category": "analytics",
+      "description": "Generate backtest reports and visualizations",
+      "file": "backend/src/reporting/",
+      "steps": [
+        "Create equity curve chart",
+        "Create drawdown chart",
+        "Create monthly returns heatmap",
+        "Create trade distribution chart",
+        "Generate PDF report with all metrics",
+        "Export results to CSV"
+      ],
+      "passes": false,
+      "skipped": null
+    }
+  ]
+}
