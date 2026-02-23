@@ -1,0 +1,222 @@
+# 25 Job Boards Configuration
+# Each board can use scraper_type: "scrapy" or "playwright"
+
+boards:
+  # Static job boards (use Scrapy)
+  - board_id: "indeed"
+    name: "Indeed"
+    base_url: "https://www.indeed.com"
+    scraper_type: "scrapy"
+    throttle:
+      delay_seconds: 2
+      max_concurrency: 1
+      max_retries: 3
+
+  - board_id: "jooble"
+    name: "Jooble"
+    base_url: "https://jooble.org"
+    scraper_type: "scrapy"
+    throttle:
+      delay_seconds: 3
+      max_concurrency: 1
+      max_retries: 3
+
+  - board_id: "jobrapido"
+    name: "Jobrapido"
+    base_url: "https://jobrapido.com"
+    scraper_type: "scrapy"
+    throttle:
+      delay_seconds: 2
+      max_concurrency: 1
+      max_retries: 3
+
+  - board_id: "linkedin"
+    name: "LinkedIn"
+    base_url: "https://www.linkedin.com"
+    scraper_type: "playwright"
+    throttle:
+      delay_seconds: 5
+      max_concurrency: 1
+      max_retries: 3
+
+  - board_id: "glassdoor"
+    name: "Glassdoor"
+    base_url: "https://www.glassdoor.com"
+    scraper_type: "playwright"
+    throttle:
+      delay_seconds: 3
+      max_concurrency: 1
+      max_retries: 3
+
+  - board_id: "monster"
+    name: "Monster"
+    base_url: "https://www.monster.com"
+    scraper_type: "scrapy"
+    throttle:
+      delay_seconds: 2
+      max_concurrency: 1
+      max_retries: 3
+
+  - board_id: "careerbuilder"
+    name: "CareerBuilder"
+    base_url: "https://www.careerbuilder.com"
+    scraper_type: "scrapy"
+    throttle:
+      delay_seconds: 2
+      max_concurrency: 1
+      max_retries: 3
+
+  - board_id: "dice"
+    name: "Dice"
+    base_url: "https://www.dice.com"
+    scraper_type: "scrapy"
+    throttle:
+      delay_seconds: 2
+      max_concurrency: 1
+      max_retries: 3
+
+  - board_id: "simplyhired"
+    name: "SimplyHired"
+    base_url: "https://www.simplyhired.com"
+    scraper_type: "scrapy"
+    throttle:
+      delay_seconds: 2
+      max_concurrency: 1
+      max_retries: 3
+
+  - board_id: "ziprecruiter"
+    name: "ZipRecruiter"
+    base_url: "https://www.ziprecruiter.com"
+    scraper_type: "scrapy"
+    throttle:
+      delay_seconds: 3
+      max_concurrency: 1
+      max_retries: 3
+
+  - board_id: " crook"
+    name: "GitHub Jobs"
+    base_url: "https://jobs.github.com"
+    scraper_type: "scrapy"
+    throttle:
+      delay_seconds: 2
+      max_concurrency: 1
+      max_retries: 3
+
+  - board_id: "stackoverflow"
+    name: "Stack Overflow Jobs"
+    base_url: "https://stackoverflow.com/jobs"
+    scraper_type: "scrapy"
+    throttle:
+      delay_seconds: 2
+      max_concurrency: 1
+      max_retries: 3
+
+  # Additional static boards
+  - board_id: "weworkremotely"
+    name: "We Work Remotely"
+    base_url: "https://weworkremotely.com"
+    scraper_type: "scrapy"
+    throttle:
+      delay_seconds: 2
+      max_concurrency: 1
+      max_retries: 3
+
+  - board_id: "remotive"
+    name: "Remotive"
+    base_url: "https://remotive.com"
+    scraper_type: "scrapy"
+    throttle:
+      delay_seconds: 2
+      max_concurrency: 1
+      max_retries: 3
+
+  - board_id: "remoteok"
+    name: "Remote OK"
+    base_url: "https://remoteok.com"
+    scraper_type: "scrapy"
+    throttle:
+      delay_seconds: 2
+      max_concurrency: 1
+      max_retries: 3
+
+  # JS-heavy boards (use Playwright)
+  - board_id: "angelco"
+    name: "AngelList"
+    base_url: "https://angel.co"
+    scraper_type: "playwright"
+    throttle:
+      delay_seconds: 5
+      max_concurrency: 1
+      max_retries: 3
+
+  - board_id: "hired"
+    name: "Hired"
+    base_url: "https://hired.com"
+    scraper_type: "playwright"
+    throttle:
+      delay_seconds: 5
+      max_concurrency: 1
+      max_retries: 3
+
+  - board_id: "lever"
+    name: "Lever"
+    base_url: "https://jobs.lever.co"
+    scraper_type: "scrapy"
+    throttle:
+      delay_seconds: 2
+      max_concurrency: 1
+      max_retries: 3
+
+  - board_id: "greenhouse"
+    name: "Greenhouse"
+    base_url: "https://boards.greenhouse.io"
+    scraper_type: "scrapy"
+    throttle:
+      delay_seconds: 2
+      max_concurrency: 1
+      max_retries: 3
+
+  - board_id: "workday"
+    name: "Workday"
+    base_url: "https://workday.com"
+    scraper_type: "playwright"
+    throttle:
+      delay_seconds: 5
+      max_concurrency: 1
+      max_retries: 3
+
+  - board_id: "indeedprime"
+    name: "Indeed Prime"
+    base_url: "https://www.indeedprime.com"
+    scraper_type: "scrapy"
+    throttle:
+      delay_seconds: 3
+      max_concurrency: 1
+      max_retries: 3
+
+  - board_id: "cybercoders"
+    name: "CyberCoders"
+    base_url: "https://www.cybercoders.com"
+    scraper_type: "scrapy"
+    throttle:
+      delay_seconds: 3
+      max_concurrency: 1
+      max_retries: 3
+
+  - board_id: "lawjobs"
+    name: "LawJobs"
+    base_url: "https://www.lawjobs.com"
+    scraper_type: "scrapy"
+    throttle:
+      delay_seconds: 2
+      max_concurrency: 1
+      max_retries: 3
+
+  - board_id: "mediabistro"
+    name: "MediaBistro"
+    base_url: "https://www.mediabistro.com"
+    scraper_type: "scrapy"
+    throttle:
+      delay_seconds: 2
+      max_concurrency: 1
+      max_retries: 3
