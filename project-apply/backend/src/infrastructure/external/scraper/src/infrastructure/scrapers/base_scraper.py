@@ -2,7 +2,7 @@ import json
 import logging
 from abc import ABC, abstractmethod
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any, Optional, Union, List, Dict
 
 logger = logging.getLogger(__name__)
 
@@ -24,8 +24,8 @@ class BaseScraper(ABC):
         if not config_path:
             config_path = Path(__file__).parent.parent.parent / "config" / "boards" / f"{self.board_id}.json"
         
-        config_file = Path(config_path)
-        if config_file.exists():
+        config_file = Path(config_path) if config_path else None
+        if config_file and config_file.exists():
             with open(config_file, "r") as f:
                 return json.load(f)
         
@@ -33,8 +33,8 @@ class BaseScraper(ABC):
         return {}
 
     @abstractmethod
-    async def scrape(self, keywords: list[str], location: str = "") -> list[dict]:
-        """Scrape jobs from the job board."""
+    def scrape(self, keywords: list[str], location: str = "", **kwargs) -> Union[list[dict], Any]:
+        """Scrape jobs from the job board. Can be sync or async."""
         pass
 
     def _create_job_record(
@@ -73,3 +73,20 @@ class BaseScraper(ABC):
         if not text:
             return None
         return " ".join(text.split()).strip()
+
+    def _extract_skills(self, text: str, max_skills: int = 10) -> list[str]:
+        common_skills = [
+            "python", "javascript", "java", "typescript", "react", "node.js",
+            "django", "flask", "postgresql", "mysql", "mongodb", "redis",
+            "aws", "azure", "gcp", "docker", "kubernetes", "git",
+            "rest api", "graphql", "machine learning", "tensorflow",
+            "reactjs", "angular", "vue", "express", "fastapi", "spring",
+            "ruby", "rails", "golang", "rust", "c++", "c#", "php", "laravel"
+        ]
+        
+        if not text:
+            return []
+        
+        text_lower = text.lower()
+        found = [skill for skill in common_skills if skill in text_lower]
+        return list(set(found))[:max_skills]

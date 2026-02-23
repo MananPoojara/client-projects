@@ -1,13 +1,13 @@
-import os
+import logging
 import sys
-import json
-import pandas as pd
 from pathlib import Path
-from datetime import datetime, timezone
+from typing import Optional
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
 from src.infrastructure.scrapers.base_scraper import BaseScraper
+
+logger = logging.getLogger(__name__)
 
 
 class IndeedSeleniumScraper(BaseScraper):
@@ -41,7 +41,6 @@ class IndeedSeleniumScraper(BaseScraper):
     def _configure_webdriver(self):
         from selenium import webdriver
         from selenium.webdriver.chrome.service import Service as ChromeService
-        from selenium.webdriver.common.by import By
         from webdriver_manager.chrome import ChromeDriverManager
         from selenium_stealth import stealth
         
@@ -67,10 +66,9 @@ class IndeedSeleniumScraper(BaseScraper):
         
         return driver
     
-    def scrape(self, keywords: list[str], location: str = "", country: str = "us", date_posted: int = 7) -> list[dict]:
+    def scrape(self, keywords: list[str], location: str = "", country: str = "us", date_posted: int = 7, **kwargs) -> list[dict]:
         from bs4 import BeautifulSoup
-        from selenium.common import NoSuchElementException
-        from selenium.webdriver.common.by import By
+        from selenium.common.exceptions import NoSuchElementException
         
         self.driver = self._configure_webdriver()
         self.results = []
@@ -80,31 +78,31 @@ class IndeedSeleniumScraper(BaseScraper):
         for keyword in keywords:
             try:
                 full_url = f"{base_url}/jobs?q={'+'.join(keyword.split())}&l={location}&fromage={date_posted}"
-                print(f"  Searching: {full_url}")
+                logger.info(f"Searching: {full_url}")
                 
                 self.driver.get(full_url)
                 
                 try:
                     job_count_element = self.driver.find_element(
-                        By.XPATH, 
+                        "xpath", 
                         '//div[starts-with(@class, "jobsearch-JobCountAndSortPane-jobCount")]'
                     )
-                    total_jobs = job_count_element.find_element(By.XPATH, './span').text
-                    print(f"  Found: {total_jobs} jobs")
+                    total_jobs = job_count_element.find_element("xpath", './span').text
+                    logger.info(f"Found: {total_jobs} jobs")
                 except NoSuchElementException:
                     total_jobs = "Unknown"
-                    print(f"  Could not get job count")
+                    logger.warning("Could not get job count")
                 
                 page_count = 0
                 while True:
                     page_count += 1
-                    print(f"  Page {page_count}...")
+                    logger.info(f"Page {page_count}...")
                     
                     soup = BeautifulSoup(self.driver.page_source, 'lxml')
                     boxes = soup.find_all('div', class_='job_seen_beacon')
                     
                     if not boxes:
-                        print(f"  No jobs found on page")
+                        logger.warning("No jobs found on page")
                         break
                     
                     for box in boxes:
@@ -113,10 +111,10 @@ class IndeedSeleniumScraper(BaseScraper):
                             if link:
                                 link_full = base_url + link.get('href')
                             else:
-                                link = box.find('a', class_=lambda x: x and 'JobTitle' in x)
+                                link = box.find('a', class_='JobTitle')
                                 link_full = base_url + link.get('href') if link else ""
                             
-                            title_elem = box.find('a', class_=lambda x: x and 'JobTitle' in x)
+                            title_elem = box.find('a', class_='JobTitle')
                             title = title_elem.text.strip() if title_elem else ""
                             
                             company_elem = box.find('span', {'data-testid': 'company-name'})
@@ -150,10 +148,10 @@ class IndeedSeleniumScraper(BaseScraper):
                             )
                             
                             self.results.append(job_data)
-                            print(f"    - {title[:40]} at {company[:20]}")
+                            logger.info(f"- {title[:40]} at {company[:20]}")
                             
                         except Exception as e:
-                            print(f"    Error: {e}")
+                            logger.error(f"Error parsing job: {e}")
                             continue
                     
                     try:
@@ -167,29 +165,17 @@ class IndeedSeleniumScraper(BaseScraper):
                         break
                         
             except Exception as e:
-                print(f"  Error: {e}")
+                logger.error(f"Error: {e}")
         
         if self.driver:
             self.driver.quit()
         
         return self.results
-    
-    def _extract_skills(self, text: str) -> list[str]:
-        common_skills = [
-            "python", "javascript", "java", "typescript", "react", "node.js",
-            "django", "flask", "postgresql", "mysql", "mongodb", "redis",
-            "aws", "azure", "gcp", "docker", "kubernetes", "git"
-        ]
-        
-        if not text:
-            return []
-        
-        text_lower = text.lower()
-        found = [skill for skill in common_skills if skill in text_lower]
-        return list(set(found))[:8]
 
 
 def main():
+    import json
+    
     print("=" * 70)
     print("INDEED SCRAPER (Selenium + Stealth)")
     print("=" * 70)
